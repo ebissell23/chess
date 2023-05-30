@@ -21,6 +21,7 @@ class Chessboard {
                 board[i][j] = NULL;
             }
         }
+
     }
 
    public void displayBoard() {
@@ -33,11 +34,14 @@ class Piece{
     protected:
         int file;
         int rank;
+        bool color; //true white, false black
+        bool hasMoved; //useful for castling and pawn moves
     
     public:
-        Piece(int initialFile, int initialRank){
+        Piece(int initialFile, int initialRank, bool pieceColor){
             file = initialFile; // x coordinate - A - H
             rank = initialRank; // y coordinate - 1-8
+            color = pieceColor;
         }
         virtual void move(int newRank, int newFile){
             rank = newRank;
@@ -46,21 +50,17 @@ class Piece{
 
 }
 //
-class Pawn : public Piece 
-private:
-    int file; // x coordinate - A-H
-    int rank; // y coordinate - 1-8
-    bool hasMoved; //use to see if it can go 1 or 2 squares forward. may help with en passant
-    // might need to add a promoted tag as well
+class Pawn : public Piece {
 
 public:
 //constructor
-    Pawn(int initialFile, int initialRank){
+    Pawn(int initialFile, int initialRank, bool pieceColor){
         //in a normal game all pawns would be on 2 or 7 rank
         //will help to have both coordinates to impliment puzzles later
         file = initialFile;
         rank = initialRank;
         hasMoved = false;
+        color = pieceColor;
     }
 
 }
