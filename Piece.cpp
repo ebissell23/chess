@@ -1,5 +1,6 @@
 #include "Piece.h"
 
+
 Piece::Piece(){
     file = -1;
     rank = -1;
@@ -18,6 +19,9 @@ char Piece::getNickname(){
 }
 void Piece::setNickname(char newNickname){
     nickName = newNickname;
+}
+bool isValidMove(int newRank, int newFile){
+    return false;
 }
 bool Piece::move(int newRank, int newFile){
     rank = newRank;

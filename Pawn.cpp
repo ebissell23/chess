@@ -17,11 +17,13 @@ Pawn::Pawn(int initialFile, int initialRank, bool pieceColor){
 
 bool Pawn::move(int newRank, int newFile, Chessboard& chessboard){
     //TODO: add checking to see if rook can move there.
-  
-    chessboard.setPiece(newRank, newFile, *this);
-    chessboard.setPiece(rank, file,Piece());
     rank = newRank;
     file = newFile;
-    
     return true;
+}
+bool Pawn::isValidMove(int newRank, int newFile){
+    
+
+
+return false;
 }
