@@ -80,6 +80,7 @@ Chessboard::Chessboard() {
     Pawn ph2(6,7,true);
     board[6][7] = ph2;
 }
+//Displays chessboard as it currently is
 void Chessboard::displayBoard(){
     for (int i = 0; i < BOARD_SIZE; i++){
         for (int j = 0; j < BOARD_SIZE; j++){
@@ -87,7 +88,117 @@ void Chessboard::displayBoard(){
         }
         std::cout << std::endl;
     }
-
 }
+void Chessboard::setPiece(int rank, int file, const Piece& piece){
+    board[rank][file]=piece;
+}
+//takes input decides if input is valid
+bool Chessboard::isValidInput(std::string input){
+    int length = input.length();
+    if (length != 4){ //can only be 4 characters ex. "e2e4"
+        std::cout << input << "is not a valid input, please try again"<<std::endl;
+        return false;
+    }
+    char firstChar = input[0];
+    char secondChar = input[1];
+    char thirdChar = input[2];
+    char fourthChar = input[3];
+    int startFile;
+    int startRank;
+    int attemptedEndFile;
+    int attemptedEndRank;
+    //converts the char to to the representative number on the 2d array
+    switch(firstChar) {
+        case 'a':
+        case 'A':
+        startFile = 0;
+        break;
+        case 'b':
+        case 'B':
+        startFile = 1;
+        break;
+        case 'c':
+        case 'C':
+        startFile = 2;
+        break;
+        case 'd':
+        case 'D':
+        startFile = 3;
+        break;
+        case 'e':
+        case 'E':
+        startFile = 4;
+        break;
+        case 'f':
+        case 'F':
+        startFile = 5;
+        break;
+        case 'g':
+        case 'G':
+        startFile = 6;
+        break;
+        case 'h':
+        case 'H':
+        startFile = 7;
+        break;
+        default:
+            return false;
+    }
+    int secondCharAsNumber = secondChar - '0'; // gives us the int 
+    if(secondCharAsNumber >= 1 && secondCharAsNumber <= 8){ //if not in this range, not valid
+        startRank = secondCharAsNumber - 1; 
+    }
+    else{
+        return false;
+    }
+    switch(thirdChar) {
+        case 'a':
+        case 'A':
+        attemptedEndFile = 0;
+        break;
+        case 'b':
+        case 'B':
+        attemptedEndFile = 1;
+        break;
+        case 'c':
+        case 'C':
+        attemptedEndFile = 2;
+        break;
+        case 'd':
+        case 'D':
+        attemptedEndFile = 3;
+        break;
+        case 'e':
+        case 'E':
+        attemptedEndFile = 4;
+        break;
+        case 'f':
+        case 'F':
+        attemptedEndFile = 5;
+        break;
+        case 'g':
+        case 'G':
+        attemptedEndFile = 6;
+        break;
+        case 'h':
+        case 'H':
+        attemptedEndFile = 7;
+        break;
+        default:
+            return false;
+    }
+    int fourthCharAsNumber = fourthChar - '0';
+    if(fourthCharAsNumber >= 1 && fourthCharAsNumber <= 8){
+        attemptedEndRank = fourthCharAsNumber - 1; 
+    }
+    else{
+        return false;
+    }
+
+    board[startRank][startFile].move(attemptedEndFile, attemptedEndRank);
+    return true;
+}
+
+
 
     

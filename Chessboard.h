@@ -2,6 +2,7 @@
 
 #ifndef CHESSBOARD_H
 #define CHESSBOARD_H
+#include <string>
 #include "Piece.h"
 #include "Rook.h"
 #include "Knight.h"
@@ -9,7 +10,7 @@
 #include "Queen.h"
 #include "King.h"
 #include "Pawn.h"
-
+class Pawn;
 class Chessboard{
     private:
         const static int BOARD_SIZE = 8;
@@ -17,6 +18,8 @@ class Chessboard{
     public:
         Chessboard();
         void displayBoard();
+        bool isValidInput(std::string input);
+        void setPiece(int rank, int file, const Piece& piece);
 
 };
 

@@ -1,4 +1,5 @@
 #include "Pawn.h"
+#include "Chessboard.h"
 Pawn::Pawn(){
     file = -1;
     rank = -1;
@@ -14,9 +15,13 @@ Pawn::Pawn(int initialFile, int initialRank, bool pieceColor){
     nickName='P';
 }
 
-bool Pawn::move(int newRank, int newFile){
+bool Pawn::move(int newRank, int newFile, Chessboard& chessboard){
     //TODO: add checking to see if rook can move there.
+  
+    chessboard.setPiece(newRank, newFile, *this);
+    chessboard.setPiece(rank, file,Piece());
     rank = newRank;
     file = newFile;
+    
     return true;
 }
