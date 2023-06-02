@@ -172,8 +172,16 @@ bool Chessboard::isValidInput(std::string input){
     int startRank = rankAsInt(input[1]);
     int attemptedEndFile = fileAsInt(input[2]);
     int attemptedEndRank = rankAsInt(input[3]);
-    board[startRank][startFile].setNickname('T');
-    board[startRank][startFile].move(attemptedEndRank, attemptedEndFile);
+   // board[startRank][startFile].setNickname('S');
+    //board[attemptedEndRank][attemptedEndFile].setNickname('F');
+    move(startRank,startFile,attemptedEndRank,attemptedEndFile);
+   // board[startRank][startFile].setNickname('T');
+    //board[startRank][startFile].move(attemptedEndRank, attemptedEndFile);
+    return true;
+}
+bool Chessboard::move(int currRank, int currFile, int newRank, int newFile){
+    board[newRank][newFile] = board[currRank][currFile];
+    board[currRank][currFile] = Piece();
     return true;
 }
 

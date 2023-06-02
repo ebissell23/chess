@@ -22,6 +22,7 @@ class Chessboard{
         void setPiece(int rank, int file, const Piece& piece);
         int rankAsInt(char input);
         int fileAsInt(char input);
+        bool move(int currRank, int currFile, int newRank, int newFile);
 
 };
 
