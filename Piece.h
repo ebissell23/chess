@@ -17,6 +17,7 @@ class Piece {
         //member functions
         bool move(int newRank, int newFile);
         char getNickname();
+        void setNickname(char newNickname);
 };
 
 #endif

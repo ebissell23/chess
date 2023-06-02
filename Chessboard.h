@@ -20,6 +20,8 @@ class Chessboard{
         void displayBoard();
         bool isValidInput(std::string input);
         void setPiece(int rank, int file, const Piece& piece);
+        int rankAsInt(char input);
+        int fileAsInt(char input);
 
 };
 

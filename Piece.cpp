@@ -16,6 +16,9 @@ Piece::Piece(int initialFile, int initialRank, bool pieceColor){
 char Piece::getNickname(){
     return nickName;
 }
+void Piece::setNickname(char newNickname){
+    nickName = newNickname;
+}
 bool Piece::move(int newRank, int newFile){
     rank = newRank;
     file=newFile;

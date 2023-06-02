@@ -92,6 +92,74 @@ void Chessboard::displayBoard(){
 void Chessboard::setPiece(int rank, int file, const Piece& piece){
     board[rank][file]=piece;
 }
+int Chessboard::rankAsInt(char input){
+    int fileNumber = input - '0'; // gives us the int 
+    if(fileNumber >= 1 && fileNumber <= 8){ //if not in this range, not valid
+        switch (fileNumber){
+            case 1:
+            return 7;
+            case 2:
+            return 6;
+            case 3:
+            return 5;
+            case 4:
+            return 4;
+            case 5:
+            return 3;
+            case 6:
+            return 2;
+            case 7:
+            return 1;
+            case 8:
+            return 0;
+            default:
+            return -1;
+
+        }
+    }
+    else{
+        return -1;
+    }
+
+}
+int Chessboard::fileAsInt(char input){
+    switch(input) {
+        case 'a':
+        case 'A':
+        return 0;
+        break;
+        case 'b':
+        case 'B':
+        return 1;
+        break;
+        case 'c':
+        case 'C':
+        return 2;
+        break;
+        case 'd':
+        case 'D':
+        return 3;
+        break;
+        case 'e':
+        case 'E':
+        return 4;
+        break;
+        case 'f':
+        case 'F':
+        return 5;
+        break;
+        case 'g':
+        case 'G':
+        return 6;
+        break;
+        case 'h':
+        case 'H':
+        return 7;
+        break;
+        default:
+            return -1;
+    }
+}
 //takes input decides if input is valid
 bool Chessboard::isValidInput(std::string input){
     int length = input.length();
@@ -99,103 +167,13 @@ bool Chessboard::isValidInput(std::string input){
         std::cout << input << "is not a valid input, please try again"<<std::endl;
         return false;
     }
-    char firstChar = input[0];
-    char secondChar = input[1];
-    char thirdChar = input[2];
-    char fourthChar = input[3];
-    int startFile;
-    int startRank;
-    int attemptedEndFile;
-    int attemptedEndRank;
     //converts the char to to the representative number on the 2d array
-    switch(firstChar) {
-        case 'a':
-        case 'A':
-        startFile = 0;
-        break;
-        case 'b':
-        case 'B':
-        startFile = 1;
-        break;
-        case 'c':
-        case 'C':
-        startFile = 2;
-        break;
-        case 'd':
-        case 'D':
-        startFile = 3;
-        break;
-        case 'e':
-        case 'E':
-        startFile = 4;
-        break;
-        case 'f':
-        case 'F':
-        startFile = 5;
-        break;
-        case 'g':
-        case 'G':
-        startFile = 6;
-        break;
-        case 'h':
-        case 'H':
-        startFile = 7;
-        break;
-        default:
-            return false;
-    }
-    int secondCharAsNumber = secondChar - '0'; // gives us the int 
-    if(secondCharAsNumber >= 1 && secondCharAsNumber <= 8){ //if not in this range, not valid
-        startRank = secondCharAsNumber - 1; 
-    }
-    else{
-        return false;
-    }
-    switch(thirdChar) {
-        case 'a':
-        case 'A':
-        attemptedEndFile = 0;
-        break;
-        case 'b':
-        case 'B':
-        attemptedEndFile = 1;
-        break;
-        case 'c':
-        case 'C':
-        attemptedEndFile = 2;
-        break;
-        case 'd':
-        case 'D':
-        attemptedEndFile = 3;
-        break;
-        case 'e':
-        case 'E':
-        attemptedEndFile = 4;
-        break;
-        case 'f':
-        case 'F':
-        attemptedEndFile = 5;
-        break;
-        case 'g':
-        case 'G':
-        attemptedEndFile = 6;
-        break;
-        case 'h':
-        case 'H':
-        attemptedEndFile = 7;
-        break;
-        default:
-            return false;
-    }
-    int fourthCharAsNumber = fourthChar - '0';
-    if(fourthCharAsNumber >= 1 && fourthCharAsNumber <= 8){
-        attemptedEndRank = fourthCharAsNumber - 1; 
-    }
-    else{
-        return false;
-    }
-
-    board[startRank][startFile].move(attemptedEndFile, attemptedEndRank);
+    int startFile = fileAsInt(input[0]);
+    int startRank = rankAsInt(input[1]);
+    int attemptedEndFile = fileAsInt(input[2]);
+    int attemptedEndRank = rankAsInt(input[3]);
+    board[startRank][startFile].setNickname('T');
+    board[startRank][startFile].move(attemptedEndRank, attemptedEndFile);
     return true;
 }
 
