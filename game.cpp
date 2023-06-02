@@ -9,9 +9,14 @@ Let's make some anarchy chess
 
 bool checkMate = false;
 
+
+
 int main(){
 //set up the board 
 //while !checkMate get next move
+
+
+
 
 Chessboard myChessBoard;
 myChessBoard.displayBoard();

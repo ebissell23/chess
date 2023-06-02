@@ -11,7 +11,8 @@ King::King(int initialFile, int initialRank, bool pieceColor){
     rank = initialRank;
     color = pieceColor;
     hasMoved = false;
-    nickName='K';
+    nickName = 'K';
+    
 }
 
 bool King::move(int newRank, int newFile){
