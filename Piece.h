@@ -18,7 +18,7 @@ class Piece {
         bool move(int newRank, int newFile);
         char getNickname();
         void setNickname(char newNickname);
-        bool isValidMove(int newRank, int newFile);
+        virtual bool isValidMove(int newRank, int newFile) = 0;
 };
 
 #endif

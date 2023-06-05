@@ -1,4 +1,5 @@
 #include "Piece.h"
+#include <iostream>
 
 
 Piece::Piece(){
@@ -20,7 +21,8 @@ char Piece::getNickname(){
 void Piece::setNickname(char newNickname){
     nickName = newNickname;
 }
-bool isValidMove(int newRank, int newFile){
+bool Piece::isValidMove(int newRank, int newFile){
+    std::cout<<"piece isvalidmove" << std::endl;
     return false;
 }
 bool Piece::move(int newRank, int newFile){

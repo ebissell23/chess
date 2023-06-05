@@ -1,6 +1,7 @@
 #include "Chessboard.h"
 #include "Piece.h"
 #include <iostream>
+#include "Pawn.h"
 
 Chessboard::Chessboard() {
     for(int i = 0; i < BOARD_SIZE; i++){
@@ -172,8 +173,16 @@ bool Chessboard::isValidInput(std::string input){
     int startRank = rankAsInt(input[1]);
     int attemptedEndFile = fileAsInt(input[2]);
     int attemptedEndRank = rankAsInt(input[3]);
+    Piece& piece = board[startRank][startFile];
+    std::cout<<"about to call isvalidMove" << std::endl;
+    if (piece.isValidMove(attemptedEndRank,attemptedEndFile)){
+        move(startRank,startFile,attemptedEndRank,attemptedEndFile);
+    }
+    else{
+        std::cout << "That move cannot be made" <<std::endl;
+        return false;
+    }
     
-    move(startRank,startFile,attemptedEndRank,attemptedEndFile);
    // board[startRank][startFile].setNickname('T');
     //board[startRank][startFile].move(attemptedEndRank, attemptedEndFile);
     return true;
