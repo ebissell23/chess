@@ -24,3 +24,6 @@ bool Queen::move(int newRank, int newFile){
 bool Queen::isValidMove(int newRank, int newFile){
     return false;
 }
+bool Queen::capture(int newRank, int newFile){
+    return false;
+}

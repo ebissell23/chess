@@ -23,3 +23,6 @@ bool Bishop::move(int newRank, int newFile){
 bool Bishop::isValidMove(int newRank, int newFile){
     return false;
 }
+bool Bishop::capture(int newRank, int newFile){
+    return false;
+}

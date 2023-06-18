@@ -12,9 +12,8 @@ Chessboard::Chessboard() {
     }
 
     // set up board with pieces
-    // [rank][file]
+    //[rank][file]
     //black major pieces
-    //Rook ra8(0,0,false);
     board[0][0] = new Rook(0, 0, false);
     board[0][1] = new Knight(0, 1, false);
     board[0][2] = new Bishop(0, 2, false);
@@ -136,6 +135,16 @@ void Chessboard::returnRankFile(std::string input){
 }
 bool Chessboard::isValidInput(std::string input){
     int length = input.length();
+    if ( length == 5){ //format is e4xe5
+        if(input[2] != 'x'){
+            return false;
+        }
+        int startFile = fileAsInt(input[0]);
+        int startRank = rankAsInt(input[1]);
+        int attemptedEndFile = fileAsInt(input[3]);
+        int attemptedEndRank = rankAsInt(input[4]);
+        board[startRank][startFile]->capture(attemptedEndRank,attemptedEndFile);
+    }
     if (length != 4){ //can only be 4 characters ex. "e2e4"
         std::cout << input << "is not a valid input, please try again"<<std::endl;
         return false;
@@ -145,30 +154,29 @@ bool Chessboard::isValidInput(std::string input){
     int startRank = rankAsInt(input[1]);
     int attemptedEndFile = fileAsInt(input[2]);
     int attemptedEndRank = rankAsInt(input[3]);
-    std::cout << "validInput func "<< std::endl;
-    std::cout << "Rank: " << startRank << std::endl;
-    std::cout << "File: " << startFile << std::endl;
-    std::cout << "EndRank: " << attemptedEndRank << std::endl;
-    std::cout << "EndFile: " << attemptedEndFile << std::endl;
+    
+    //std::cout << "validInput func "<< std::endl;
+    //std::cout << "Rank: " << startRank << std::endl;
+    //std::cout << "File: " << startFile << std::endl;
+    //std::cout << "EndRank: " << attemptedEndRank << std::endl;
+    //std::cout << "EndFile: " << attemptedEndFile << std::endl;
 
     //Piece& piece = board[startRank][startFile];
     std::cout<<"about to call isvalidMove" << std::endl;
     
-    if (board[startRank][startFile]->isValidMove(attemptedEndRank,attemptedEndFile)){
+    //checks if there is a piece at new spot. will have captures elsewhere
+    if ((board[attemptedEndRank][attemptedEndFile]==nullptr) && board[startRank][startFile]->isValidMove(attemptedEndRank,attemptedEndFile)){
         move(startRank,startFile,attemptedEndRank,attemptedEndFile);
     }
     else{
         std::cout << "That move cannot be made -- " <<std::endl;
         return false;
     }
-    
-   // board[startRank][startFile].setNickname('T');
-    //board[startRank][startFile].move(attemptedEndRank, attemptedEndFile);
     return true;
 }
 bool Chessboard::move(int currRank, int currFile, int newRank, int newFile){
     board[newRank][newFile] = board[currRank][currFile];
-    board[currRank][currFile] = new BoardPiece();
+    board[currRank][currFile] = nullptr;
     return true;
 }
 

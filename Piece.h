@@ -21,6 +21,9 @@ class Piece {
         void setNickname(char newNickname);
         virtual bool isValidMove(int newRank, int newFile) = 0;
         virtual ~Piece();
+        virtual bool capture(int newRank, int newFile) = 0;
+        
+
 };
 
 #endif

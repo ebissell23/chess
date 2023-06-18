@@ -24,3 +24,6 @@ bool King::move(int newRank, int newFile){
 bool King::isValidMove(int newRank, int newFile){
     return false;
 }
+bool King::capture(int newRank, int newFile){
+    return false;
+}

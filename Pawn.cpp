@@ -44,10 +44,12 @@ bool Pawn::isValidMove(int newRank, int newFile){
             //pawn moving up 2 places on first move
             //captures will be done in different method
             std::cout<<"moving 2 spots" << std::endl;
+            rank = newRank;
             return true;
         }
         else if ( newRank == rank - 1){
             std::cout<<"moving one spot" << std::endl;
+            rank = newRank;
             return true;
         }
     }
@@ -59,9 +61,11 @@ bool Pawn::isValidMove(int newRank, int newFile){
         else if( (rank == 1) && (newRank == 3) ){
             //pawn moving up 2 places on first move
             //captures will be done in different method
+            rank = newRank;
             return true;
         }
         else if ( newRank == rank + 1){
+            rank = newRank;
             return true;
         }
     }
@@ -70,4 +74,7 @@ return false;
 }
 bool Pawn::isWhite(){
     return color;
+}
+bool Pawn::capture(int newRank, int newFile){
+    return false;
 }
