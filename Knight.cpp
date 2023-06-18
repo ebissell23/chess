@@ -6,7 +6,7 @@ Knight::Knight(){
     hasMoved = false;
     nickName = 'N';
 }
-Knight::Knight(int initialFile, int initialRank, bool pieceColor){
+Knight::Knight(int initialRank, int initialFile, bool pieceColor){
     file = initialFile;
     rank = initialRank;
     color = pieceColor;
@@ -19,4 +19,7 @@ bool Knight::move(int newRank, int newFile){
     rank = newRank;
     file = newFile;
     return true;
+}
+bool Knight::isValidMove(int newRank, int newFile){
+    return false;
 }

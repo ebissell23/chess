@@ -6,7 +6,7 @@ Queen::Queen(){
     hasMoved = false;
     nickName = 'Q';
 }
-Queen::Queen(int initialFile, int initialRank, bool pieceColor){
+Queen::Queen(int initialRank, int initialFile, bool pieceColor){
     file = initialFile;
     rank = initialRank;
     color = pieceColor;
@@ -19,4 +19,8 @@ bool Queen::move(int newRank, int newFile){
     rank = newRank;
     file = newFile;
     return true;
+}
+
+bool Queen::isValidMove(int newRank, int newFile){
+    return false;
 }

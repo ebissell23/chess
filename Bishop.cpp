@@ -6,7 +6,7 @@ Bishop::Bishop(){
     hasMoved = false;
     nickName = 'Q';
 }
-Bishop::Bishop(int initialFile, int initialRank, bool pieceColor){
+Bishop::Bishop(int initialRank, int initialFile, bool pieceColor){
     file = initialFile;
     rank = initialRank;
     color = pieceColor;
@@ -19,4 +19,7 @@ bool Bishop::move(int newRank, int newFile){
     rank = newRank;
     file = newFile;
     return true;
+}
+bool Bishop::isValidMove(int newRank, int newFile){
+    return false;
 }

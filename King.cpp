@@ -6,7 +6,7 @@ King::King(){
     hasMoved = false;
     nickName = 'K';
 }
-King::King(int initialFile, int initialRank, bool pieceColor){
+King::King(int initialRank, int initialFile, bool pieceColor){
     file = initialFile;
     rank = initialRank;
     color = pieceColor;
@@ -20,4 +20,7 @@ bool King::move(int newRank, int newFile){
     rank = newRank;
     file = newFile;
     return true;
+}
+bool King::isValidMove(int newRank, int newFile){
+    return false;
 }

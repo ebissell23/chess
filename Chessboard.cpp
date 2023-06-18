@@ -1,97 +1,63 @@
 #include "Chessboard.h"
 #include "Piece.h"
+#include "BoardPiece.h"
 #include <iostream>
 #include "Pawn.h"
 
 Chessboard::Chessboard() {
     for(int i = 0; i < BOARD_SIZE; i++){
         for (int j = 0; j < BOARD_SIZE; j++){
-                board[i][j] = Piece();
+                board[i][j] = nullptr;
         }
     }
 
     // set up board with pieces
     // [rank][file]
     //black major pieces
-    Rook ra8(0,0,false);
-    board[0][0] = ra8;
-    Knight nb8(0,1,false);
-    board[0][1] = nb8;
-    Bishop bc8(0,3,false);
-    board[0][2] = bc8;
-    Queen qd8(0,4,false);
-    board[0][3] = qd8;
-    King ke8(0,5,false);
-    board[0][4] = ke8;
-    Bishop bf8(0,6,false);
-    board[0][5] = bf8;
-    Knight ng8(0,6,false);
-    board[0][6] = ng8;
-    Rook rh8(0,7,false);
-    board[0][7] = rh8;
+    //Rook ra8(0,0,false);
+    board[0][0] = new Rook(0, 0, false);
+    board[0][1] = new Knight(0, 1, false);
+    board[0][2] = new Bishop(0, 2, false);
+    board[0][3] = new Queen(0, 3, false);
+    board[0][4] = new King(0, 4, false);
+    board[0][5] = new Bishop(0, 5, false);
+    board[0][6] = new Knight(0, 6, false);
+    board[0][7] = new Rook(0, 7, false);
     //black pawns
-    Pawn pa7(1,0,false);
-    board[1][0] = pa7;
-    Pawn pb7(1,1,false);
-    board[1][1] = pb7;
-    Pawn pc7(1,2,false);
-    board[1][2] = pc7;
-    Pawn pd7(1,3,false);
-    board[1][3] = pd7;
-    Pawn pe7(1,4,false);
-    board[1][4] = pe7;
-    Pawn pf7(1,5,false);
-    board[1][5] = pf7;
-    Pawn pg7(1,6,false);
-    board[1][6] = pg7;
-    Pawn ph7(1,7,false);
-    board[1][7] = ph7;
+     for (int j = 0; j < BOARD_SIZE; j++) {
+        board[1][j] = new Pawn(1, j, false);
+    }
     //white major pieces
-    Rook ra1(7,0,true);
-    board[7][0] = ra1;
-    Knight nb1(7,1,true);
-    board[7][1] = nb1;
-    Bishop bc1(7,3,true);
-    board[7][2] = bc1;
-    Queen qd1(7,4,true);
-    board[7][3] = qd1;
-    King ke1(7,5,true);
-    board[7][4] = ke1;
-    Bishop bf1(7,6,true);
-    board[7][5] = bf1;
-    Knight ng1(7,6,true);
-    board[7][6] = ng1;
-    Rook rh1(7,7,true);
-    board[7][7] = rh1;
+    board[7][0] = new Rook(7, 0, true);
+    board[7][1] = new Knight(7, 1, true);
+    board[7][2] = new Bishop(7, 2, true);
+    board[7][3] = new Queen(7, 3, true);
+    board[7][4] = new King(7, 4, true);
+    board[7][5] = new Bishop(7, 5, true);
+    board[7][6] = new Knight(7, 6, true);
+    board[7][7] = new Rook(7, 7, true);
     //white pawns
-    Pawn pa2(6,0,true);
-    board[6][0] = pa2;
-    Pawn pb2(6,1,true);
-    board[6][1] = pb2;
-    Pawn pc2(6,2,true);
-    board[6][2] = pc2;
-    Pawn pd2(6,3,true);
-    board[6][3] = pd2;
-    Pawn pe2(6,4,true);
-    board[6][4] = pe2;
-    Pawn pf2(6,5,true);
-    board[6][5] = pf2;
-    Pawn pg2(6,6,true);
-    board[6][6] = pg2;
-    Pawn ph2(6,7,true);
-    board[6][7] = ph2;
+    for (int j = 0; j < BOARD_SIZE; j++) {
+        board[6][j] = new Pawn(6, j, true);
+    }
 }
 //Displays chessboard as it currently is
 void Chessboard::displayBoard(){
     for (int i = 0; i < BOARD_SIZE; i++){
         for (int j = 0; j < BOARD_SIZE; j++){
-            std::cout << board[i][j].getNickname() << " ";
+            if(board[i][j] == nullptr){
+                std::cout << "-"<<" ";
+            }
+            else{
+            std::cout << board[i][j]->getNickname() << " ";
+            }
         }
         std::cout << std::endl;
     }
 }
-void Chessboard::setPiece(int rank, int file, const Piece& piece){
-    board[rank][file]=piece;
+void Chessboard::setPiece(int rank, int file,  Piece& piece){
+    delete board[rank][file];
+    board[rank][file]= &piece;
 }
 int Chessboard::rankAsInt(char input){
     int fileNumber = input - '0'; // gives us the int 
@@ -162,6 +128,12 @@ int Chessboard::fileAsInt(char input){
     }
 }
 //takes input decides if input is valid
+void Chessboard::returnRankFile(std::string input){
+    int file = fileAsInt(input[0]);
+    int rank = rankAsInt(input[1]);
+    std::cout << "Rank: " << rank << std::endl;
+    std::cout << "File: " << file << std::endl;
+}
 bool Chessboard::isValidInput(std::string input){
     int length = input.length();
     if (length != 4){ //can only be 4 characters ex. "e2e4"
@@ -173,13 +145,20 @@ bool Chessboard::isValidInput(std::string input){
     int startRank = rankAsInt(input[1]);
     int attemptedEndFile = fileAsInt(input[2]);
     int attemptedEndRank = rankAsInt(input[3]);
-    Piece& piece = board[startRank][startFile];
+    std::cout << "validInput func "<< std::endl;
+    std::cout << "Rank: " << startRank << std::endl;
+    std::cout << "File: " << startFile << std::endl;
+    std::cout << "EndRank: " << attemptedEndRank << std::endl;
+    std::cout << "EndFile: " << attemptedEndFile << std::endl;
+
+    //Piece& piece = board[startRank][startFile];
     std::cout<<"about to call isvalidMove" << std::endl;
-    if (piece.isValidMove(attemptedEndRank,attemptedEndFile)){
+    
+    if (board[startRank][startFile]->isValidMove(attemptedEndRank,attemptedEndFile)){
         move(startRank,startFile,attemptedEndRank,attemptedEndFile);
     }
     else{
-        std::cout << "That move cannot be made" <<std::endl;
+        std::cout << "That move cannot be made -- " <<std::endl;
         return false;
     }
     
@@ -189,7 +168,7 @@ bool Chessboard::isValidInput(std::string input){
 }
 bool Chessboard::move(int currRank, int currFile, int newRank, int newFile){
     board[newRank][newFile] = board[currRank][currFile];
-    board[currRank][currFile] = Piece();
+    board[currRank][currFile] = new BoardPiece();
     return true;
 }
 

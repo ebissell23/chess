@@ -1,7 +1,7 @@
 CXX = g++
 CXXFLAGS = -std=c++11 -Wall
 
-SRCS = game.cpp Chessboard.cpp Rook.cpp Knight.cpp Bishop.cpp Queen.cpp King.cpp Pawn.cpp Piece.cpp
+SRCS = game.cpp Chessboard.cpp Rook.cpp Knight.cpp Bishop.cpp Queen.cpp King.cpp Pawn.cpp Piece.cpp BoardPiece.cpp
 OBJS = $(SRCS:.cpp=.o)
 DEPS = $(SRCS:.cpp=.h)
 TARGET = anarchyChess

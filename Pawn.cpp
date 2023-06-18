@@ -8,7 +8,7 @@ Pawn::Pawn(){
     hasMoved = false;
     nickName = 'P';
 }
-Pawn::Pawn(int initialFile, int initialRank, bool pieceColor){
+Pawn::Pawn(int initialRank, int initialFile, bool pieceColor){
     file = initialFile;
     rank = initialRank;
     color = pieceColor;
@@ -23,10 +23,15 @@ bool Pawn::move(int newRank, int newFile, Chessboard& chessboard){
     return true;
 }
 bool Pawn::isValidMove(int newRank, int newFile){
-    std::cout<<"start of isValidMove()" << std::endl;
+    std::cout<<"\n start of Pawn isValidMove()" << std::endl;
+    std::cout <<"Rank: " << rank << std::endl;
+    std::cout <<"File: " << file << std::endl;
+    std::cout <<"NewRank: " << newRank << std::endl;
+    std::cout <<"newFile: " << newFile << std::endl;
     if(newFile != file){ //seperate method for capturing. 
+         std::cout<<"wrong file" << std::endl;
         return false; //can only move in straight lines
-        std::cout<<"wrong file" << std::endl;
+       
     }
     if(isWhite()){
         std::cout<<"white" << std::endl;

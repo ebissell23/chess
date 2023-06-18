@@ -6,7 +6,7 @@ Rook::Rook(){
     hasMoved = false;
     nickName = 'R';
 }
-Rook::Rook(int initialFile, int initialRank, bool pieceColor){
+Rook::Rook(int initialRank, int initialFile, bool pieceColor){
     file = initialFile;
     rank = initialRank;
     color = pieceColor;
@@ -19,4 +19,7 @@ bool Rook::move(int newRank, int newFile){
     rank = newRank;
     file = newFile;
     return true;
+}
+bool Rook::isValidMove(int newRank, int newFile){
+    return false;
 }
