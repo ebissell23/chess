@@ -10,6 +10,7 @@ class Pawn : public Piece{
         bool move(int newRank, int newFile, Chessboard& chessboard);
         bool isValidMove(int newRank, int newFile);
         bool isWhite();
+        bool isValidCapture(int newRank, int newFile);
         bool capture(int newRank, int newFile);
 
 };

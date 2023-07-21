@@ -22,6 +22,7 @@ bool Pawn::move(int newRank, int newFile, Chessboard& chessboard){
     file = newFile;
     return true;
 }
+
 bool Pawn::isValidMove(int newRank, int newFile){
     std::cout<<"\n start of Pawn isValidMove()" << std::endl;
     std::cout <<"Rank: " << rank << std::endl;
@@ -29,7 +30,7 @@ bool Pawn::isValidMove(int newRank, int newFile){
     std::cout <<"NewRank: " << newRank << std::endl;
     std::cout <<"newFile: " << newFile << std::endl;
     if(newFile != file){ //seperate method for capturing. 
-         std::cout<<"wrong file" << std::endl;
+         std::cout<<"Pawns can only change files if they capture" << std::endl;
         return false; //can only move in straight lines
        
     }
@@ -74,6 +75,26 @@ return false;
 }
 bool Pawn::isWhite(){
     return color;
+}
+bool Pawn::isValidCapture(int newRank, int newFile){
+    if (newFile == file){ //pawns can only capture on the diagnal
+        return false;
+    }
+    if(isWhite()){
+        if(newRank >= rank){ //white pieces can only move up the board
+            return false; 
+        }
+    }
+    else{ //black
+        if(newRank <= rank){ //black pieces can only move down the board
+            return false;
+        }
+    }
+    if( !( (file + 1 == newFile)||(file - 1) ) ){ //can only capture one file over
+        return false;
+    }
+    
+
 }
 bool Pawn::capture(int newRank, int newFile){
     return false;
