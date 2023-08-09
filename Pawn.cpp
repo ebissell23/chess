@@ -94,7 +94,7 @@ bool Pawn::isValidCapture(int newRank, int newFile){
         return false;
     }
     
-
+return false;
 }
 bool Pawn::capture(int newRank, int newFile){
     return false;
