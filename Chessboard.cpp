@@ -136,6 +136,7 @@ void Chessboard::returnRankFile(std::string input){
 bool Chessboard::isValidInput(std::string input){
     int length = input.length();
     if ( length == 5){ //format is e4xe5
+        std::cout << "in 5" << std::endl;
         if(input[2] != 'x'){
             return false;
         }
@@ -143,7 +144,18 @@ bool Chessboard::isValidInput(std::string input){
         int startRank = rankAsInt(input[1]);
         int attemptedEndFile = fileAsInt(input[3]);
         int attemptedEndRank = rankAsInt(input[4]);
-        board[startRank][startFile]->capture(attemptedEndRank,attemptedEndFile);
+        if(board[attemptedEndRank][attemptedEndFile] == nullptr){ // can't capture on empty squares
+            std::cout << "cant capture on empty square" << std::endl;
+            return false;
+        }
+        std::cout << "calling capture from chessboard" << std::endl;
+        if(board[startRank][startFile]->capture(attemptedEndRank,attemptedEndFile)){
+            capture(startRank, startFile, attemptedEndRank, attemptedEndFile);
+            return true;
+        }
+        else{
+            return false;
+        }
     }
     if (length != 4){ //can only be 4 characters ex. "e2e4"
         std::cout << input << "is not a valid input, please try again"<<std::endl;
@@ -155,11 +167,7 @@ bool Chessboard::isValidInput(std::string input){
     int attemptedEndFile = fileAsInt(input[2]);
     int attemptedEndRank = rankAsInt(input[3]);
     
-    //std::cout << "validInput func "<< std::endl;
-    //std::cout << "Rank: " << startRank << std::endl;
-    //std::cout << "File: " << startFile << std::endl;
-    //std::cout << "EndRank: " << attemptedEndRank << std::endl;
-    //std::cout << "EndFile: " << attemptedEndFile << std::endl;
+   
 
     //Piece& piece = board[startRank][startFile];
     std::cout<<"about to call isvalidMove" << std::endl;
@@ -179,7 +187,20 @@ bool Chessboard::move(int currRank, int currFile, int newRank, int newFile){
     board[currRank][currFile] = nullptr;
     return true;
 }
+bool Chessboard::capture(int currRank, int currFile, int newRank, int newFile){
+    if(board[currRank][currFile]->isValidCapture(newRank,newFile)){
+        delete board[newRank][newFile];
+        board[newRank][newFile] = board[currRank][currFile];
+        board[currRank][currFile] = nullptr;
+        return true;
+    }
+    return false;
+}
 
 
 
-    
+     //std::cout << "validInput func "<< std::endl;
+    //std::cout << "Rank: " << startRank << std::endl;
+    //std::cout << "File: " << startFile << std::endl;
+    //std::cout << "EndRank: " << attemptedEndRank << std::endl;
+    //std::cout << "EndFile: " << attemptedEndFile << std::endl;

@@ -77,25 +77,38 @@ bool Pawn::isWhite(){
     return color;
 }
 bool Pawn::isValidCapture(int newRank, int newFile){
+    std::cout << "begin of isValid Capture" << std::endl;
     if (newFile == file){ //pawns can only capture on the diagnal
+        std::cout << "same file" << std::endl;
         return false;
     }
     if(isWhite()){
+        std::cout <<"is valid capture, is white" << std::endl;
         if(newRank >= rank){ //white pieces can only move up the board
+        std::cout << "white" << std::endl;
             return false; 
         }
     }
     else{ //black
         if(newRank <= rank){ //black pieces can only move down the board
+        std::cout << "black" << std::endl;
             return false;
         }
     }
     if( !( (file + 1 == newFile)||(file - 1) ) ){ //can only capture one file over
+    std::cout << "too many files" << std::endl;
         return false;
     }
-    
-return false;
+    std::cout << "end" << std::endl;
+return true;
 }
 bool Pawn::capture(int newRank, int newFile){
+    std::cout << "pawn capture" << std::endl;
+   if(isValidCapture(newRank, newFile)){
+       // std::cout << "is valid capture" << std::endl;
+        rank = newRank;
+        file = newFile;
+        return true;
+   }
     return false;
 }

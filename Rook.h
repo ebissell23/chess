@@ -10,6 +10,7 @@ class Rook : public Piece{
         bool move(int newRank, int newFile);
         bool isValidMove(int newRank, int newFile);
         bool capture(int newRank, int newFile);
+        bool isValidCapture(int newRank, int newFile);
 };
 
 #endif

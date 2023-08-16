@@ -43,4 +43,7 @@ bool Piece::capture(int newRank, int newFile){
     std::cout << "Piece.cpp capture" << std::endl;
     return false;
 }
-
+bool Piece::isValidCapture(int newRank, int newFile){
+    std::cout << "Piece.cpp is valid capture" << std::endl;
+    return false;
+}

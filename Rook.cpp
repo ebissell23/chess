@@ -26,3 +26,6 @@ bool Rook::isValidMove(int newRank, int newFile){
 bool Rook::capture(int newRank, int newFile){
     return false;
 }
+bool Rook::isValidCapture(int newRank, int newFile){
+    return false;
+}

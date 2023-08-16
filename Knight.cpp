@@ -26,3 +26,6 @@ bool Knight::isValidMove(int newRank, int newFile){
 bool Knight::capture(int newRank, int newFile){
     return false;
 }
+bool Knight::isValidCapture(int newRank, int newFile){
+    return false;
+}

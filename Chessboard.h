@@ -25,6 +25,7 @@ class Chessboard{
         int fileAsInt(char input);
         bool move(int currRank, int currFile, int newRank, int newFile);
         void returnRankFile(std::string input);
+        bool capture(int currRank, int currFile, int newRank, int newFile);
 
 };
 
