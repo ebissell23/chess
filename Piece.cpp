@@ -29,19 +29,23 @@ char Piece::getNickname(){
 void Piece::setNickname(char newNickname){
     nickName = newNickname;
 }
-bool Piece::isValidMove(int newRank, int newFile){
+bool Piece::isValidMove(int newRank, int newFile, Piece* board[][8]){
     std::cout<<" piece isvalidmove " << std::endl;
     return false;
 }
-bool Piece::move(int newRank, int newFile){
+bool Piece::move(int newRank, int newFile, Piece* board[][8]){
     std::cout << "Piece.cpp move" << std::endl;
     return false;
 }
-bool Piece::capture(int newRank, int newFile){
+bool Piece::capture(int newRank, int newFile, Piece* board[][8]){
     std::cout << "Piece.cpp capture" << std::endl;
     return false;
 }
-bool Piece::isValidCapture(int newRank, int newFile){
+bool Piece::isValidCapture(int newRank, int newFile, Piece* board[][8]){
     std::cout << "Piece.cpp is valid capture" << std::endl;
     return false;
 }
+//bool Piece::isValidMove2(int newRank, int newFile,  Piece* board[][8]){
+    //std::cout << "piece is valid move2" <<std::endl;
+    //return false;
+//}

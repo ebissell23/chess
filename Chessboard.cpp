@@ -133,6 +133,7 @@ int Chessboard::fileAsInt(char input){
 } */
 
 bool Chessboard::isValidInput(std::string input){
+ 
     int startFile = -1;
     int startRank = -1;
     int attemptedEndRank = -1;
@@ -180,7 +181,7 @@ bool Chessboard::isValidInput(std::string input){
 }
 bool Chessboard::move(int currRank, int currFile, int newRank, int newFile){
     std::cout<<"calling pawn.move()" << std::endl;
-    if(board[currRank][currFile]->move(newRank,newFile)){
+    if(board[currRank][currFile]->move(newRank,newFile,board)){
         board[newRank][newFile] = board[currRank][currFile];
         board[currRank][currFile] = nullptr;
         return true;
@@ -189,7 +190,7 @@ bool Chessboard::move(int currRank, int currFile, int newRank, int newFile){
    return false;
 }
 bool Chessboard::capture(int currRank, int currFile, int newRank, int newFile){
-    if(board[currRank][currFile]->capture(newRank,newFile)){
+    if(board[currRank][currFile]->capture(newRank,newFile,board)){
         delete board[newRank][newFile];
         board[newRank][newFile] = board[currRank][currFile];
         board[currRank][currFile] = nullptr;

@@ -16,10 +16,10 @@ Pawn::Pawn(int initialRank, int initialFile, bool pieceColor){
     nickName='P';
 }
 
-bool Pawn::move(int newRank, int newFile){
+bool Pawn::move(int newRank, int newFile, Piece* board[][8]){
     //TODO: add checking to see if rook can move there.
     std::cout<< "pawn.move" <<std::endl;
-    if(isValidMove(newRank,newFile)){
+    if(isValidMove(newRank,newFile,board)){
         rank = newRank;
         file = newFile;
         return true;
@@ -27,7 +27,7 @@ bool Pawn::move(int newRank, int newFile){
     return false;
 }
 
-bool Pawn::isValidMove(int newRank, int newFile){
+bool Pawn::isValidMove(int newRank, int newFile, Piece* board[][8]){
     
     if(newFile != file){ //seperate method for capturing. 
          std::cout<<"Pawns can only change files if they capture" << std::endl;
@@ -77,7 +77,7 @@ return false;
 bool Pawn::isWhite(){
     return color;
 }
-bool Pawn::isValidCapture(int newRank, int newFile){
+bool Pawn::isValidCapture(int newRank, int newFile, Piece* board[][8]){
     std::cout << "begin of isValid Capture" << std::endl;
     if (newFile == file){ //pawns can only capture on the diagnal
         std::cout << "Same File" << std::endl;
@@ -101,9 +101,9 @@ bool Pawn::isValidCapture(int newRank, int newFile){
     std::cout << "end" << std::endl;
 return true;
 }
-bool Pawn::capture(int newRank, int newFile){
+bool Pawn::capture(int newRank, int newFile, Piece* board[][8]){
     std::cout << "pawn capture" << std::endl;
-   if(isValidCapture(newRank, newFile)){
+   if(isValidCapture(newRank, newFile,board)){
        // std::cout << "is valid capture" << std::endl;
         rank = newRank;
         file = newFile;

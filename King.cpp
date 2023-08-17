@@ -15,18 +15,18 @@ King::King(int initialRank, int initialFile, bool pieceColor){
     
 }
 
-bool King::move(int newRank, int newFile){
+bool King::move(int newRank, int newFile, Piece* board[][8]){
     //TODO: add checking to see if King can move there.
     rank = newRank;
     file = newFile;
     return true;
 }
-bool King::isValidMove(int newRank, int newFile){
+bool King::isValidMove(int newRank, int newFile, Piece* board[][8]){
     return false;
 }
-bool King::capture(int newRank, int newFile){
+bool King::capture(int newRank, int newFile, Piece* board[][8]){
     return false;
 }
-bool King::isValidCapture(int newRank, int newFile){
+bool King::isValidCapture(int newRank, int newFile, Piece* board[][8]){
     return false;
 }

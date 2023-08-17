@@ -6,7 +6,7 @@
 class BoardPiece : public Piece{
     public:
         BoardPiece();
-        bool isValidMove(int newRank, int newFile);
+        bool isValidMove(int newRank, int newFile, Piece* board[][8]);
 };
 
 #endif

@@ -14,19 +14,19 @@ Queen::Queen(int initialRank, int initialFile, bool pieceColor){
     nickName='Q';
 }
 
-bool Queen::move(int newRank, int newFile){
+bool Queen::move(int newRank, int newFile, Piece* board[][8]){
     //TODO: add checking to see if Queen can move there.
     rank = newRank;
     file = newFile;
     return true;
 }
 
-bool Queen::isValidMove(int newRank, int newFile){
+bool Queen::isValidMove(int newRank, int newFile, Piece* board[][8]){
     return false;
 }
-bool Queen::capture(int newRank, int newFile){
+bool Queen::capture(int newRank, int newFile, Piece* board[][8]){
     return false;
 }
-bool Queen::isValidCapture(int newRank, int newFile){
+bool Queen::isValidCapture(int newRank, int newFil, Piece* board[][8]){
     return false;
 }
