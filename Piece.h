@@ -16,7 +16,7 @@ class Piece {
         Piece(int initialFile, int initialRank, bool pieceColor);
         Piece(const Piece& other);
         //member functions
-        bool move(int newRank, int newFile);
+        virtual bool move(int newRank, int newFile) = 0;
         char getNickname();
         void setNickname(char newNickname);
         virtual bool isValidMove(int newRank, int newFile) = 0;

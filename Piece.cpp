@@ -35,9 +35,7 @@ bool Piece::isValidMove(int newRank, int newFile){
 }
 bool Piece::move(int newRank, int newFile){
     std::cout << "Piece.cpp move" << std::endl;
-    rank = newRank;
-    file = newFile;
-    return true;
+    return false;
 }
 bool Piece::capture(int newRank, int newFile){
     std::cout << "Piece.cpp capture" << std::endl;

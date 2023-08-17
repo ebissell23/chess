@@ -15,15 +15,24 @@ Rook::Rook(int initialRank, int initialFile, bool pieceColor){
 }
 
 bool Rook::move(int newRank, int newFile){
-    //TODO: add checking to see if rook can move there.
-    rank = newRank;
-    file = newFile;
-    return true;
+   if(isValidMove(newRank, newFile)){
+        rank = newRank;
+        file = newFile;
+        return true;
+    }
+    return false;
 }
 bool Rook::isValidMove(int newRank, int newFile){
+    
+
     return false;
 }
 bool Rook::capture(int newRank, int newFile){
+    if(isValidCapture(newRank, newFile)){
+        rank = newRank;
+        file = newFile;
+        return true;
+    }
     return false;
 }
 bool Rook::isValidCapture(int newRank, int newFile){

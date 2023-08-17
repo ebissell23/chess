@@ -16,19 +16,19 @@ Pawn::Pawn(int initialRank, int initialFile, bool pieceColor){
     nickName='P';
 }
 
-bool Pawn::move(int newRank, int newFile, Chessboard& chessboard){
+bool Pawn::move(int newRank, int newFile){
     //TODO: add checking to see if rook can move there.
-    rank = newRank;
-    file = newFile;
-    return true;
+    std::cout<< "pawn.move" <<std::endl;
+    if(isValidMove(newRank,newFile)){
+        rank = newRank;
+        file = newFile;
+        return true;
+    }
+    return false;
 }
 
 bool Pawn::isValidMove(int newRank, int newFile){
-    std::cout<<"\n start of Pawn isValidMove()" << std::endl;
-    std::cout <<"Rank: " << rank << std::endl;
-    std::cout <<"File: " << file << std::endl;
-    std::cout <<"NewRank: " << newRank << std::endl;
-    std::cout <<"newFile: " << newFile << std::endl;
+    
     if(newFile != file){ //seperate method for capturing. 
          std::cout<<"Pawns can only change files if they capture" << std::endl;
         return false; //can only move in straight lines
@@ -45,14 +45,17 @@ bool Pawn::isValidMove(int newRank, int newFile){
             //pawn moving up 2 places on first move
             //captures will be done in different method
             std::cout<<"moving 2 spots" << std::endl;
-            rank = newRank;
             return true;
         }
         else if ( newRank == rank - 1){
             std::cout<<"moving one spot" << std::endl;
-            rank = newRank;
             return true;
         }
+        else{
+            std::cout << "trying to move too many positions" << std::endl;
+            return false;
+        }
+
     }
     else{
         if(newRank <= rank){ //pawns only move forwards
@@ -62,11 +65,9 @@ bool Pawn::isValidMove(int newRank, int newFile){
         else if( (rank == 1) && (newRank == 3) ){
             //pawn moving up 2 places on first move
             //captures will be done in different method
-            rank = newRank;
             return true;
         }
         else if ( newRank == rank + 1){
-            rank = newRank;
             return true;
         }
     }
@@ -79,13 +80,11 @@ bool Pawn::isWhite(){
 bool Pawn::isValidCapture(int newRank, int newFile){
     std::cout << "begin of isValid Capture" << std::endl;
     if (newFile == file){ //pawns can only capture on the diagnal
-        std::cout << "same file" << std::endl;
+        std::cout << "Same File" << std::endl;
         return false;
     }
     if(isWhite()){
-        std::cout <<"is valid capture, is white" << std::endl;
         if(newRank >= rank){ //white pieces can only move up the board
-        std::cout << "white" << std::endl;
             return false; 
         }
     }
@@ -95,8 +94,8 @@ bool Pawn::isValidCapture(int newRank, int newFile){
             return false;
         }
     }
-    if( !( (file + 1 == newFile)||(file - 1) ) ){ //can only capture one file over
-    std::cout << "too many files" << std::endl;
+    if( !( (file + 1 == newFile)||(file - 1 == newFile) ) ){ //can only capture one file over
+    std::cout << "Trying to move many files" << std::endl;
         return false;
     }
     std::cout << "end" << std::endl;
@@ -112,3 +111,10 @@ bool Pawn::capture(int newRank, int newFile){
    }
     return false;
 }
+
+/*  std::cout<<"\n start of Pawn isValidMove()" << std::endl;
+    std::cout <<"Rank: " << rank << std::endl;
+    std::cout <<"File: " << file << std::endl;
+    std::cout <<"NewRank: " << newRank << std::endl;
+    std::cout <<"newFile: " << newFile << std::endl;
+    */
