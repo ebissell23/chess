@@ -11,6 +11,10 @@ class Queen : public Piece{
         bool isValidMove(int newRank, int newFile, Piece* board[][8]);
         bool capture(int newRank, int newFile, Piece* board[][8]);
         bool isValidCapture(int newRank, int newFile, Piece* board[][8]);
+        bool isValidBishopMove(int newRank, int newFile, Piece* board[][8]);
+        bool isValidBishopCapture(int newRank, int newFile, Piece* board[][8]);
+        bool isValidRookMove(int newRank, int newFile, Piece* board[][8]);
+        bool isValidRookCapture(int newRank, int newFile, Piece* board[][8]);
 };
 
 #endif

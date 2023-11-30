@@ -5,7 +5,7 @@ Bishop::Bishop(){
     rank = -1;
     color = false;
     hasMoved = false;
-    nickName = 'Q';
+    nickName = 'B';
 }
 Bishop::Bishop(int initialRank, int initialFile, bool pieceColor){
     file = initialFile;
@@ -28,7 +28,6 @@ bool Bishop::move(int newRank, int newFile, Piece* board[][8]){
 }
 
 bool Bishop::isValidMove(int newRank, int newFile, Piece* board[][8]){
-    std::cout<< "Bishop: isValidMove" << std::endl;
     int rankDifference = std::abs(newRank - rank);
     int fileDifference = std::abs(newFile - file);
 
