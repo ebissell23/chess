@@ -32,8 +32,8 @@ bool Knight::isValidMove(int newRank, int newFile, Piece* board[][8]){
     for (int i = 0; i < 8; i++){ //iterate through all relative moves and check if attempted move works
         int potentialRank = rank + dRank[i];
         int potentialFile = file + dFile[i];
-        std::cout << "/n potentialRank : " << potentialRank << std::endl;
-        std::cout << " potentialFile : " << potentialFile << std::endl;
+        //std::cout << "/n potentialRank : " << potentialRank << std::endl;
+        //std::cout << " potentialFile : " << potentialFile << std::endl;
         if( (potentialRank == newRank) && (potentialFile == newFile) ){
             return true;
         }
@@ -49,5 +49,13 @@ bool Knight::capture(int newRank, int newFile, Piece* board[][8]){
     return false;
 }
 bool Knight::isValidCapture(int newRank, int newFile, Piece* board[][8]){
-    return true;
+    if(color == board[newRank][newFile]->isWhite()){
+        return false;
+    }
+
+    if(isValidMove(newRank, newFile, board)){
+        return true;
+    }
+
+    return false;
 }
