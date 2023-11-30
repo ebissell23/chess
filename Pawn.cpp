@@ -35,7 +35,7 @@ bool Pawn::isValidMove(int newRank, int newFile, Piece* board[][8]){
        
     }
     if(isWhite()){
-        std::cout<<"white" << std::endl;
+      //  std::cout<<"white" << std::endl;
         if(newRank >= rank){ //white pieces can only move forwards
             //white starts on "rank/index 7" so moving up is down in rank number
             std::cout<<"moving wrong way" << std::endl;
@@ -48,7 +48,7 @@ bool Pawn::isValidMove(int newRank, int newFile, Piece* board[][8]){
             return true;
         }
         else if ( newRank == rank - 1){
-            std::cout<<"moving one spot" << std::endl;
+         //   std::cout<<"moving one spot" << std::endl;
             return true;
         }
         else{
@@ -78,7 +78,7 @@ bool Pawn::isWhite(){
     return color;
 }
 bool Pawn::isValidCapture(int newRank, int newFile, Piece* board[][8]){
-    std::cout << "begin of isValid Capture" << std::endl;
+ //   std::cout << "begin of isValid Capture" << std::endl;
     if (newFile == file){ //pawns can only capture on the diagnal
         std::cout << "Same File" << std::endl;
         return false;

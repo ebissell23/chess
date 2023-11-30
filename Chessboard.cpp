@@ -182,18 +182,26 @@ bool Chessboard::move(int currRank, int currFile, int newRank, int newFile){
        std::cout << "board: currRank currFile" << board[currRank][currFile] << std::endl;
     if(board[currRank][currFile]->move(newRank,newFile,board)){
         board[newRank][newFile] = board[currRank][currFile];
+        std::cout << "moving a : " << board[currRank][currFile]->getNickname() << std::endl;
         board[currRank][currFile] = nullptr;
         std::cout << "board: currRank currFile" << board[currRank][currFile] << std::endl;
+        if(board[currRank][currFile] == nullptr){
+            std::cout << "Rank: " << currRank << " File: " << currFile << " is a nullptr" <<std::endl;
+        }
         return true;
     }
     std::cout << "return false" << std::endl;
    return false;
 }
 bool Chessboard::capture(int currRank, int currFile, int newRank, int newFile){
+    std::cout << "Capturing from a : " << board[currRank][currFile]->getNickname() << std::endl;
     if(board[currRank][currFile]->capture(newRank,newFile,board)){
         delete board[newRank][newFile];
         board[newRank][newFile] = board[currRank][currFile];
         board[currRank][currFile] = nullptr;
+        if(board[currRank][currFile] == nullptr){
+            std::cout << "Rank: " << currRank << " File: " << currFile << " is a nullptr" <<std::endl;
+        }
         return true;
     }
     std::cout<< "board: false capture" << std::endl;

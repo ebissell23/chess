@@ -29,8 +29,10 @@ bool Bishop::move(int newRank, int newFile, Piece* board[][8]){
 
 bool Bishop::isValidMove(int newRank, int newFile, Piece* board[][8]){
     std::cout<< "Bishop: isValidMove" << std::endl;
-    int rankDifference = std::abs(newRank-rank);
+    int rankDifference = std::abs(newRank - rank);
     int fileDifference = std::abs(newFile - file);
+
+    std::cout<< "rankDiff: " << rankDifference << "FileDiff: " << fileDifference << std::endl;
     if(rankDifference != fileDifference){
         std::cout << "must move diagnally"<<std::endl;
         return false;
@@ -44,7 +46,7 @@ bool Bishop::isValidMove(int newRank, int newFile, Piece* board[][8]){
     else{
         rankDirection = 1;
     }
-    if ( file > fileDirection){
+    if ( file > newFile){
          fileDirection = -1;
     }
     else{
@@ -52,12 +54,12 @@ bool Bishop::isValidMove(int newRank, int newFile, Piece* board[][8]){
     }
 
     for (int i = 1; i < rankDifference; i++){
-        int intermediateRank = rank + i * rankDirection;
-        int intermediateFile = file + i * fileDirection;
+        int intermediateRank = rank + (i * rankDirection);
+        int intermediateFile = file + (i * fileDirection);
         std::cout<< "IntermediateRank: " << intermediateRank << std::endl;
         std::cout<< "IntermediateFile: " << intermediateFile << std::endl;
-        std::cout<< "IntermediateSquare: " << board[intermediateRank][intermediateFile] << std::endl;
-        if ( !(board[intermediateRank][intermediateFile] == NULL) ){
+       // std::cout<< "IntermediateSquare: " << board[intermediateRank][intermediateFile]->getNickname() << std::endl;
+        if ( !(board[intermediateRank][intermediateFile] == nullptr) ){
             std::cout<<" Bishop: intermediate square has piece" << std::endl;
             return false;
         }
@@ -73,8 +75,8 @@ bool Bishop::capture(int newRank, int newFile, Piece* board[][8]){
     return false;
 }
 bool Bishop::isValidCapture(int newRank, int newFile, Piece* board[][8]){
-
-    if(color == board[newRank][newFile]){
+    std::cout << "bishop isValidcapture" <<std::endl;
+    if(color == board[newRank][newFile]->isWhite()){
         std::cout << "Bishop: Can't Capture Own Piece \n" << std::endl;
         return false; 
     }
@@ -94,16 +96,26 @@ bool Bishop::isValidCapture(int newRank, int newFile, Piece* board[][8]){
     else{
         rankDirection = 1;
     }
-    if ( file > fileDirection){
+    if ( file > newFile){
          fileDirection = -1;
     }
     else{
         fileDirection = 1;
     }
-
-
-
-
-
-    return false;
+    if(  (rankDifference == 1) && (fileDifference == 1) ){ // right next to it
+        return true;
+    }
+    
+    for (int i = 1; i < rankDifference - 1; i++){
+        int intermediateRank = rank + (i * rankDirection);
+        int intermediateFile = file + (i * fileDirection);
+       // std::cout<< "IntermediateRank: " << intermediateRank << std::endl;
+       // std::cout<< "IntermediateFile: " << intermediateFile << std::endl;
+        //std::cout<< "IntermediateSquare: " << board[intermediateRank][intermediateFile] << std::endl;
+        if ( !(board[intermediateRank][intermediateFile] == nullptr) ){
+            std::cout<<" Bishop: intermediate square has a : " <<board[intermediateRank][intermediateFile]->getNickname() << std::endl;
+            return false;
+        }
+    }
+    return true;
 }
