@@ -126,11 +126,6 @@ int Chessboard::fileAsInt(char input){
             return -1;
     }
 }
-//takes input decides if input is valid
-/* void Chessboard::returnRankFile(std::string input){
-    int file = fileAsInt(input[0]);
-    int rank = rankAsInt(input[1]);
-} */
 
 bool Chessboard::isValidInput(std::string input){
  
@@ -141,7 +136,9 @@ bool Chessboard::isValidInput(std::string input){
     int length = input.length();
     //captures
     if ( length == 5){ //format is e4xe5
+        std::cout<< "length is 5" << std::endl;
         if(input[2] != 'x'){
+            std::cout << "no X" << std::endl;
             return false;
         }
          startFile = fileAsInt(input[0]);
@@ -149,17 +146,17 @@ bool Chessboard::isValidInput(std::string input){
          attemptedEndFile = fileAsInt(input[3]);
          attemptedEndRank = rankAsInt(input[4]);
         if(board[attemptedEndRank][attemptedEndFile] == nullptr){ // can't capture on empty squares
-            std::cout << "Can't capture on empty square" << std::endl;
+            std::cout << "board.cpp Can't capture on empty square" << std::endl;
             return false;
         }
         else if (board[startRank][startFile] == nullptr){ //can't capture from empty squares
-            std::cout << "can't capture from an empty square" << std::endl;
+            std::cout << "board.cpp can't capture from an empty square" << std::endl;
             return false;
         }
         return capture(startRank, startFile, attemptedEndRank, attemptedEndFile); //checks are done in here   
     }
     if (length != 4){ //can only be 4 characters ex. "e2e4"
-        std::cout << input << "is not a valid input, please try again"<<std::endl;
+        std::cout << input << "board.cpp is not a valid input, please try again"<<std::endl;
         return false;
     }
     //converts the char to to the representative number on the 2d array
@@ -171,19 +168,22 @@ bool Chessboard::isValidInput(std::string input){
     //checks if there is a piece at new spot
     if ((board[attemptedEndRank][attemptedEndFile]==nullptr) && (board[startRank][startFile] != nullptr)){
         std::cout <<"calling chessboard move" << std::endl;
-        move(startRank,startFile,attemptedEndRank,attemptedEndFile);
+        return move(startRank,startFile,attemptedEndRank,attemptedEndFile);
     }
     else{
         std::cout << "That move cannot be made -- " <<std::endl;
         return false;
     }
+    std::cout << "board: returning true at end of method" << std::endl;
     return true;
 }
 bool Chessboard::move(int currRank, int currFile, int newRank, int newFile){
-    std::cout<<"calling pawn.move()" << std::endl;
+    std::cout<<"calling piece.move()" << std::endl;
+       std::cout << "board: currRank currFile" << board[currRank][currFile] << std::endl;
     if(board[currRank][currFile]->move(newRank,newFile,board)){
         board[newRank][newFile] = board[currRank][currFile];
         board[currRank][currFile] = nullptr;
+        std::cout << "board: currRank currFile" << board[currRank][currFile] << std::endl;
         return true;
     }
     std::cout << "return false" << std::endl;
@@ -196,6 +196,7 @@ bool Chessboard::capture(int currRank, int currFile, int newRank, int newFile){
         board[currRank][currFile] = nullptr;
         return true;
     }
+    std::cout<< "board: false capture" << std::endl;
     return false;
 }
 

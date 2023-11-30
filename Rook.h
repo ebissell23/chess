@@ -11,7 +11,8 @@ class Rook : public Piece{
         bool isValidMove(int newRank, int newFile, Piece* board[][8]);
         bool capture(int newRank, int newFile, Piece* board[][8]);
         bool isValidCapture(int newRank, int newFile, Piece* board[][8]);
+        //bool isWhite();
        // bool isValidMove2(int newRank, int newFile,  Piece* board[][8]);
 };
 
-#endif
+#endif 

@@ -45,6 +45,9 @@ bool Piece::isValidCapture(int newRank, int newFile, Piece* board[][8]){
     std::cout << "Piece.cpp is valid capture" << std::endl;
     return false;
 }
+bool Piece::isWhite(){
+    return color;
+}
 //bool Piece::isValidMove2(int newRank, int newFile,  Piece* board[][8]){
     //std::cout << "piece is valid move2" <<std::endl;
     //return false;

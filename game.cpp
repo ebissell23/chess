@@ -29,7 +29,7 @@ while(!checkMate){
     if( myChessBoard.isValidInput(input) ){
       myChessBoard.displayBoard();
     }
-    else{ std::cout << " That wasn't a valid move. Please try again" << std::endl; }
+    else{ std::cout << " Game: That wasn't a valid move. Please try again" << std::endl; }
   
 //}
 }

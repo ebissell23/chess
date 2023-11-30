@@ -23,6 +23,7 @@ class Piece {
         virtual ~Piece();
         virtual bool isValidCapture(int newRank, int newFile, Piece* board[][8]) = 0;
         virtual bool capture(int newRank, int newFile, Piece* board[][8]) = 0;
+        bool isWhite();
        // virtual bool isValidMove2(int newRank, int newFile, Piece* board[][8]) = 0;
         
 
