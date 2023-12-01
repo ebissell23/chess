@@ -127,7 +127,7 @@ int Chessboard::fileAsInt(char input){
     }
 }
 
-bool Chessboard::isValidInput(std::string input, bool){
+bool Chessboard::isValidInput(std::string input, bool turn){
  
     int startFile = -1;
     int startRank = -1;
@@ -149,6 +149,9 @@ bool Chessboard::isValidInput(std::string input, bool){
         else if (board[startRank][startFile] == nullptr){ //can't capture from empty squares
             return false;
         }
+        else if (board[startRank][startFile]->isWhite() == turn){
+            return false;
+        }
         return capture(startRank, startFile, attemptedEndRank, attemptedEndFile); //checks are done in here   
     }
     if (length != 4){ //can only be 4 characters ex. "e2e4"
@@ -161,7 +164,7 @@ bool Chessboard::isValidInput(std::string input, bool){
      attemptedEndRank = rankAsInt(input[3]);
     
     //checks if there is a piece at new spot
-    if ((board[attemptedEndRank][attemptedEndFile]==nullptr) && (board[startRank][startFile] != nullptr)){
+    if ((board[attemptedEndRank][attemptedEndFile]==nullptr) && (board[startRank][startFile] != nullptr) && (!(board[startRank][startFile]->isWhite() == turn))){
         return move(startRank,startFile,attemptedEndRank,attemptedEndFile);
     }
     else{
@@ -181,6 +184,16 @@ bool Chessboard::move(int currRank, int currFile, int newRank, int newFile){
 }
 bool Chessboard::capture(int currRank, int currFile, int newRank, int newFile){
     if(board[currRank][currFile]->capture(newRank,newFile,board)){
+        if(board[newRank][newFile]->getNickname() == 'K'){
+            if(board[currRank][currFile]->isWhite()){
+                std::cout << "White Wins!" << std::endl;
+            }
+            else{
+                std::cout << "Black Wins!" << std::endl;
+            }
+            std::cout << "Game Over!!" << std::endl;
+            exit(0);
+        }
         delete board[newRank][newFile];
         board[newRank][newFile] = board[currRank][currFile];
         board[currRank][currFile] = nullptr;
