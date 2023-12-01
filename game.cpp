@@ -8,6 +8,7 @@ Let's make some anarchy chess
 #include "Chessboard.h"
 
 bool checkMate = false;
+bool turn = false;
 
 int main(){
 //set up the board 
@@ -26,8 +27,9 @@ while(!checkMate){
     std::cout << " What piece would you like to move? \n Enter the rank and file and final rank and file ex. \"e2e4\" "<< std::endl;
     std::string input;
     std::getline(std::cin, input);
-    if( myChessBoard.isValidInput(input) ){
+    if( myChessBoard.isValidInput(input,turn) ){
       myChessBoard.displayBoard();
+      turn = !turn;
     }
     else{ std::cout << " Game: That wasn't a valid move. Please try again" << std::endl; }
   

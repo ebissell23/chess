@@ -32,8 +32,6 @@ bool Knight::isValidMove(int newRank, int newFile, Piece* board[][8]){
     for (int i = 0; i < 8; i++){ //iterate through all relative moves and check if attempted move works
         int potentialRank = rank + dRank[i];
         int potentialFile = file + dFile[i];
-        //std::cout << "/n potentialRank : " << potentialRank << std::endl;
-        //std::cout << " potentialFile : " << potentialFile << std::endl;
         if( (potentialRank == newRank) && (potentialFile == newFile) ){
             return true;
         }

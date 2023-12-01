@@ -19,7 +19,7 @@ class Chessboard{
     public:
         Chessboard();
         void displayBoard();
-        bool isValidInput(std::string input);
+        bool isValidInput(std::string input, bool turn);
         void setPiece(int rank, int file,  Piece& piece);
         int rankAsInt(char input);
         int fileAsInt(char input);

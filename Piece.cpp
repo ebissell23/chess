@@ -48,7 +48,3 @@ bool Piece::isValidCapture(int newRank, int newFile, Piece* board[][8]){
 bool Piece::isWhite(){
     return color;
 }
-//bool Piece::isValidMove2(int newRank, int newFile,  Piece* board[][8]){
-    //std::cout << "piece is valid move2" <<std::endl;
-    //return false;
-//}
